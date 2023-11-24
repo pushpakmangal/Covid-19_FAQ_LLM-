@@ -1,0 +1,19 @@
+name: Example Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  example_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run my_func.py
+        run: python my_func.py
+        env:
+          MY_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
