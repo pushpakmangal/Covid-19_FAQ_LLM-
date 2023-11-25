@@ -2,21 +2,16 @@ import streamlit as st
 from my_func import get_qa_chain, create_vector_db
 
 st.title("Covid-19 Q&A 🧑‍")
-# btn = st.button("Create Knowledgebase")
-# if btn:
-#     create_vector_db()
 
 question = st.text_input("Question: ")
 
 if question:
-    chain = get_qa_chain()
-    response = chain(question)
+    try:
+        chain = get_qa_chain()
+        response = chain(question)
 
-    st.header("Answer")
-    st.write(response["result"])
-
-
-
-
-
-
+        st.header("Answer")
+        st.write(response["result"])
+    except Exception as e:
+        # st.error(f"An error occurred while processing the question: {e}")
+        st.write("I don't know")
